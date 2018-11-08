@@ -6,4 +6,4 @@
  * Time: 16:27
  */
 
-echo 'hello yuu';
+require '../framework/run.php';
