@@ -36,6 +36,13 @@ class App
     private static $container;
 
     /**
+     * 响应对象
+     * @var string
+    */
+    private $responseData;
+
+
+    /**
      * App constructor.
      * @param $rootPath
      * @param \Closure $loader
@@ -59,15 +66,31 @@ class App
     }
     /**
      * 运行应用
-     *
+     * 将加载的模块放入容器的变量中
      *
     */
     public function run(\Closure $request){
-
         self::$container->setSingle('request',$request);
+
+        foreach ($this->handlesList as $handle){
+            $instance = $handle();
+            self::$container->setSingle(get_class($instance),$instance);
+            $instance->register($this);
+        }
     }
 
-    public function response(){
+    public function response(\Closure $closure){
 
+        if($this->isCli === 'yes'){
+            $closure()->cliModeSuccess($this->responseData);
+            return;
+        }
+
+//        $useReset = self::$container->getSingle('config')->config['rest_response'];
+//        if($useReset){
+//            $closure()->restSuccess($this->responseData);
+//        }
+        $closure()->response($this->responseData);
     }
 }
+

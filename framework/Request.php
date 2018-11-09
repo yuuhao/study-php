@@ -9,10 +9,24 @@
 namespace Framework;
 
 
+
+/**
+ * 请求
+*/
 class Request
 {
+
+
+    /**
+     * 构造函数
+     * 设置环境，请求参数
+     *
+     * @param App $app 框架实例
+    */
     public function __construct(App $app)
     {
+        $this->serverParams = $_SERVER;
 
+        $this->loadEnv($app);
     }
 }
