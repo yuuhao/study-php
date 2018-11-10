@@ -27,7 +27,7 @@ try {
     /**
      * 启动应用
      */
-    $app->run(function ()use($app) {
+    $app->run( function ()use($app) {
         return new Request($app);
     });
 
