@@ -11,6 +11,7 @@
 */
 require __DIR__.'/App.php';
 use Framework\Request;
+use Framework\Response;
 use Framework\CoreHttpException\CoreHttpException;
 
 try {
@@ -35,7 +36,9 @@ try {
      * 响应结果
      * END
     */
-    $app->response();
+    $app->response(function (){
+        return new Response();
+    });
 
 }catch (CoreHttpException $e){
     /**

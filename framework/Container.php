@@ -14,7 +14,6 @@ use Framework\CoreHttpException\CoreHttpException;
 class Container
 {
 
-
     private $instanceMap = [];
 
     /**
@@ -36,5 +35,15 @@ class Container
             return $this->instanceMap[$alias];
         }
 
+        if(is_object($object)){
+
+        }
+
+    }
+
+    public function getSingle($alias){
+        if(array_key_exists($alias,$this->instanceMap)){
+            return $this->instanceMap[$alias];
+        }
     }
 }
