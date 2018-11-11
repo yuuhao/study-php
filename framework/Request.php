@@ -11,12 +11,12 @@ namespace Framework;
 
 
 /**
- * 请求
+ * 请求类，
+ * 作用获得请求参数功能
+ *
 */
 class Request
 {
-
-
     /**
      * 构造函数
      * 设置环境，请求参数
@@ -28,6 +28,11 @@ class Request
 
         $this->serverParams = $_SERVER;
 
-        $this->loadEnv($app);
+
+        //$this->loadEnv($app);
+    }
+
+    public function get(){
+
     }
 }

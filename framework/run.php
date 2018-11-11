@@ -12,7 +12,8 @@
 require __DIR__.'/App.php';
 use Framework\Request;
 use Framework\Response;
-use Framework\CoreHttpException\CoreHttpException;
+use Framework\Handle\RouteHandle;
+use Framework\CoreException\CoreHttpException;
 
 try {
 
@@ -21,15 +22,31 @@ try {
     });
 
 
+    /**
+     * 注册加载模块
+    */
+
+    $app->load(function() use ($app){
+        return new  RouteHandle($app);
+    });
+
+
 //-----------------------------------------------------------------------//
 //                              START APP                                //
 //-----------------------------------------------------------------------//
-
-    /**
+     /**
      * 启动应用
      */
     $app->run( function ()use($app) {
         return new Request($app);
+    });
+
+
+
+
+    ///???? 缺少处理请求模块？？？
+    $app->load(function () {
+        return new RouteHandle();
     });
 
     /**
@@ -40,9 +57,11 @@ try {
         return new Response();
     });
 
+
 }catch (CoreHttpException $e){
     /**
      * 捕获异常
     */
     $e->response();
 }
+

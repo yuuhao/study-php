@@ -6,7 +6,7 @@
  * Time: 17:06
  */
 
-namespace Framework\CoreHttpException;
+namespace Framework\CoreException;
 
 
 class CoreHttpException extends \Exception
