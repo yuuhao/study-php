@@ -74,6 +74,7 @@ class App
 
         foreach ($this->handlesList as $handle){
             $instance = $handle();
+            print_r($instance->register($this));
             self::$container->setSingle(get_class($instance),$instance);
             $instance->register($this);
         }
@@ -85,13 +86,16 @@ class App
             $closure()->cliModeSuccess($this->responseData);
             return;
         }
-
 //        $useReset = self::$container->getSingle('config')->config['rest_response'];
 //        if($useReset){
 //            $closure()->restSuccess($this->responseData);
 //        }
 
         $closure()->response($this->responseData);
+    }
+
+    public function handle(){
+
     }
 }
 
