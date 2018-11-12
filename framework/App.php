@@ -90,6 +90,7 @@ class App
 //        if($useReset){
 //            $closure()->restSuccess($this->responseData);
 //        }
+
         $closure()->response($this->responseData);
     }
 }
